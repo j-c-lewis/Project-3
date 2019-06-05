@@ -12,10 +12,13 @@
   }
 */
 
-
+/** 
+ * Targets "other" function, hides it so it displays even if javascript is disabled 
+ * but is hidden at first*/
   $(document).ready(
     function()
     {
       $('').removeClass('');
     }
  );
+ 
