@@ -1,28 +1,34 @@
+/**
+ * Treehouse Telepath Project Three: Interactive Form 
+ * Jane Lewis
+ */
+//Makes the name field focus state
+$("#name").focus();
 
-
-
-
-/** 
- * function replaceContentInContainer(target, source) {
-    document.getElementById(target).innerHTML = document.getElementById(source).innerHTML;
-  }
-  
-  function replaceContentInOtherContainer(replace_target, source) {
-    document.getElementById(replace_target).innerHTML = document.getElementById(source).innerHTML;
-  }
-*/
 
 /** 
  * Targets "other" function, hides it so it displays even if javascript is disabled 
  * but is hidden at first*/
  
-$(document).ready(
-    function()
-    {
-      $('').removeClass('');
-    }
- );
+$(function() {
+  $('(other-title)').hide();
+});  
 
+/**
+ * In design menu -
+ * hide option select theme
+ * update color field to read please select a t-shirt theme
+ * hide colors in drop down menu
+ * 
+ */
+$("color").change(function){
+
+};
+
+$( "color" )
+//  .filter(function( index ) {
+ //   return index  === "JS Puns";
+//  })
 /** 
  *  function change(colorOp) {
 
