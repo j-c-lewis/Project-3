@@ -34,6 +34,22 @@ $('#color option').hide();
  * calcalate activities cost
 */
 
+var activities = document.getElementById("activities");
+
+activitiesCheckbox.addEventListener("change", function(event) {
+  if (event.target.checked) {
+    activities.disabled = false;
+  } else {
+    activities.disabled = true;
+  }
+}, false);
+
+var actPrice= new Array();
+accPrice["None"]=0;
+
+
+
+
 
 
 /** 
