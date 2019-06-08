@@ -5,14 +5,11 @@
 //Makes the name field focus state
 $("#name").focus();
 
-
 /** 
  * Targets "other" function, hides it so it displays even if javascript is disabled 
  * but is hidden at first*/
- 
-$(function() {
-  $('(other-title)').hide();
-});  
+
+  $('#other-title').hide(); 
 
 /**
  * In design menu -
@@ -21,19 +18,20 @@ $(function() {
  * hide colors in drop down menu
  * 
  */
-$("color").change(function){
+$('#color option';first').before(<'option value="default">Please select a T-shirt theme</option'>);
+$(option value).click(function){
 
-};
+}
+$( "input[type=text].option value" ).val(function(value) {
+  return value(theme);
+});
 
-$( "color" )
-//  .filter(function( index ) {
- //   return index  === "JS Puns";
-//  })
+$('#color option').hide();
+
+
+
 /** 
- *  function change(colorOp) {
-
-
-  let selectBox = colorOp;
+ * let selectBox = colorOp;
   let selected = selectBox.options[selectBox.selectedIndex].value;
   let textarea = document.getElementById("design");
 
@@ -46,6 +44,7 @@ $( "color" )
   }
 }
 */
+  
 
  /*** 
   * onchange="change()";
