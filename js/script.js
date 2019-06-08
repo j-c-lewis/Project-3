@@ -44,28 +44,20 @@ activitiesCheckbox.addEventListener("change", function(event) {
   }
 }, false);
 
-var actPrice= new Array();
-accPrice["None"]=0;
+$('.option').click(function() {
+    let total = 0;
+    $('.option:checkbox).each(function() {
+        total += parseInt($(this).val()); 
+    });
+$('#total').html('$' + total);
+});
 
 
+//hasAttribute()
 
-
-
-
-/** 
- * let selectBox = colorOp;
-  let selected = selectBox.options[selectBox.selectedIndex].value;
-  let textarea = document.getElementById("design");
-
-  if(selected === 'Theme - JS Puns'){
-      textarea.style.display = ("Coenflower Blue", "Dark Slate Grey", and "Gold");
-  }
-  else{
-      textarea.style.display = "I &#9829; JS shirt only";
-      textarea.style.display =("Tomato," "Steel Blue," and "Dim Grey.")
-  }
-}
-*/
+//var actPrice= new Array();
+//accPrice["None"]=0;
+ 
   
 
  /*** 
