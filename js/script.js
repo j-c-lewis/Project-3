@@ -21,12 +21,18 @@ $("#name").focus();
 $('#color option';first').before(<'option value="default">Please select a T-shirt theme</option'>);
 $(option value).click(function){
 
-}
+};
 $( "input[type=text].option value" ).val(function(value) {
   return value(theme);
 });
 
 $('#color option').hide();
+
+/** 
+ * Activity section
+ * prevent user from selecting 2 activities at the same time
+ * calcalate activities cost
+*/
 
 
 
