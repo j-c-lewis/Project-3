@@ -52,6 +52,9 @@ $('.option').click(function() {
 $('#total').html('$' + total);
 });
 
+//$('#design').change(function (e) { 
+// 
+//'#colors-js-puns' div,
 
 //hasAttribute()
 
