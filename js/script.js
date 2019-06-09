@@ -44,7 +44,8 @@ $('#design').change(function(){
  * calcalate activities cost
 */
 
-var activities = document.getElementById("activities");
+/** 
+ * var activities = document.getElementById("activities");
 
 activitiesCheckbox.addEventListener("change", function(event) {
   if (event.target.checked) {
@@ -61,6 +62,8 @@ $('.option').click(function() {
     });
 $('#total').html('$' + total);
 });
+*/
+
 
 //$('#design').change(function (e) { 
 // 
