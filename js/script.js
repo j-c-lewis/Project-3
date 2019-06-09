@@ -26,15 +26,17 @@ $("#name").focus();
  * hide colors in drop down menu
  * 
  */
-$('#color option';first').before(<'option value="default">Please select a T-shirt theme</option'>);
-$(option value).click(function){
 
-};
-$( "input[type=text].option value" ).val(function(value) {
-  return value(theme);
+$('#color').hide()
+
+$('#design').change(function(){
+    if($('#design').val() === 'js puns') {
+        $('#color').show();
+    } else {
+        $('#color').hide
+    }
 });
 
-$('#color option').hide();
 
 /** 
  * Activity section
