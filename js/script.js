@@ -10,13 +10,13 @@ $("#name").focus();
  * Targets "other" function, hides it so it displays even if javascript is disabled 
  * but is hidden at first*/
 
-  $('#other-title').hide(); 
+  $('#other').hide(); 
 
-  $('#other-title').on('change', function() {
+  $('#other').on('change', function() {
       if ($(this).val() ==="other") {
-          $('#other-title').show()
+          $('#other').show()
       }else (
-          $('#other-title').hide()
+          $('#other').hide()
       )
   });
 
@@ -38,6 +38,13 @@ $('#design').change(function(){
     }
 });
 
+$('#design').change(function(){
+    if($('#design').val() === 'heart js') {
+        $('#color').show();
+    } else {
+        $('#color').hide
+    }
+});
 
 /** 
  * Activity section
