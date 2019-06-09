@@ -11,6 +11,14 @@ $("#name").focus();
 
   $('#other-title').hide(); 
 
+  $title.on('change', function() {
+      if ($(this).val() ==="other") {
+          $('#other-title').show()
+      }else (
+          $('#other-title').hide()
+      )
+  });
+
 /**
  * In design menu -
  * hide option select theme
