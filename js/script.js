@@ -5,13 +5,14 @@
 //Makes the name field focus state
 $("#name").focus();
 
+
 /** 
  * Targets "other" function, hides it so it displays even if javascript is disabled 
  * but is hidden at first*/
 
   $('#other-title').hide(); 
 
-  $title.on('change', function() {
+  $('#other-title').on('change', function() {
       if ($(this).val() ==="other") {
           $('#other-title').show()
       }else (
