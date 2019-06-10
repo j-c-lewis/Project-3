@@ -10,14 +10,14 @@ $("#name").focus();
  * Targets "other" function, hides it so it displays even if javascript is disabled 
  * but is hidden at first*/
 
-  $('#other-title').hide(); 
+  $('#other-title-wrapper').hide(); 
 
-  $('#job_role_other').on('change', function() {
+  $('#title').on('change', function() {
       if ($(this).val() ==="other") {
-          $('#job_role_other').show()
-      }else (
-          $('#job_role_other').hide()
-      )
+          $('#other-title-wrapper').show()
+      }else {
+          $('#other-title-wrapper').hide()
+      }
   });
 
 /**
