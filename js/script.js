@@ -34,7 +34,7 @@ $('#design').change(function(){
     if($('#design').val() === 'js puns') {
         $('#color').show(input=Text);
     } else {
-        $('#color').hide()
+        $('#color').hide();
     }
 });
 
