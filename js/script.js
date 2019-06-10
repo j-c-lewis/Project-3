@@ -28,7 +28,7 @@ $("#name").focus();
  * 
  */
 
-$('#color').hide();
+$('#colors-js-puns').hide();
 
 $('#design').change(function(){
     if($('#design').val() === 'js puns') {
