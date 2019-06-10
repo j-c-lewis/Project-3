@@ -28,7 +28,7 @@ $("#name").focus();
  * 
  */
 
-$('#color').hide()
+$('#color').hide();
 
 $('#design').change(function(){
     if($('#design').val() === 'js puns') {
@@ -42,7 +42,7 @@ $('#design').change(function(){
     if($('#design').val() === 'heart js') {
         $('#color').show();
     } else {
-        $('#color').hide
+        $('#color').hide();
     }
 });
 
