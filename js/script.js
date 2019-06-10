@@ -12,11 +12,11 @@ $("#name").focus();
 
   $('#other-title').hide(); 
 
-  $('#other-title').on('change', function() {
+  $('#job_role_other').on('change', function() {
       if ($(this).val() ==="other") {
-          $('#other-title').show()
+          $('#job_role_other').show()
       }else (
-          $('#other-title').hide()
+          $('#job_role_other').hide()
       )
   });
 
