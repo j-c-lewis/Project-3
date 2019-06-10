@@ -28,11 +28,11 @@ $("#name").focus();
  * 
  */
 
-$('#colors-js-puns').hide();
+//$('#design').hide();
 
 $('#design').change(function(){
     if($('#design').val() === 'js puns') {
-        $('#color').show(input=Text);
+        $('#color').show("Plese Select a T-shirt theme'");
     } else {
         $('#color').hide();
     }
@@ -45,6 +45,8 @@ $('#design').change(function(){
         $('#color').hide();
     }
 });
+
+$('#color').find('option').hide()
 
 /** 
  * Activity section
