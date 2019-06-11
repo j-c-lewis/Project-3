@@ -23,12 +23,15 @@ $("#name").focus();
 /**
  * In design menu -
  * hide option select theme
- * update color field to read please select a t-shirt theme
+ * update color field to read "Please select a T-shirt theme"
  * hide colors in drop down menu
  * 
  */
 
-$('#design').children().first().hide();
+/* $('#design').children().first().hide();*/
+
+let chooseThemeOption = $("#color").append(new Option("Please select a t-shirt theme", "select"));  // create a new menu option and set the value equal to the string "select"
+$("#color").val("select");  // select that option so that it appears in the dropdown menu
 
 $('#design').change(function(){
     if($('#design').val() === 'js puns') {
