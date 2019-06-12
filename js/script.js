@@ -67,16 +67,16 @@ const conferCost=('checkboxAll');
 //Append activity
 $('#activities').append();
 
-$(''.activities'.change(function(){
-};
-    function pricePerAct(){
-        frameWorks.find.(':first-Child').attr('class','frameworks');
-    };
+//Change without disabling activity
+
+$('.activities').on('change', (event) => {
+    event.DefaultOff();
+
+    $("input").prop('disabled', true);
+    $("input").prop('disabled', false);
 
 /** 
  * 
-
-
 
 $('.option').click(function() {
     let total = 0;
