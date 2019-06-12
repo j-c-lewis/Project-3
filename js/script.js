@@ -3,6 +3,11 @@
  * Jane Lewis
  */
 //Makes the name field focus state
+
+//Initial cost is 0
+let totalCost= 0;
+
+
 $("#name").focus();
 
 
@@ -24,14 +29,14 @@ $("#name").focus();
  * In design menu -
  * hide option select theme
  * update color field to read "Please select a T-shirt theme"
- * hide colors in drop down menu
+ * hide color selection in drop down menu untile design theme is selected in 
  * 
  */
 
 /* $('#design').children().first().hide();*/
 
-let chooseThemeOption = $("#color").append(new Option("Please select a t-shirt theme", "select"));  // create a new menu option and set the value equal to the string "select"
-$("#color").val("select");  // select that option so that it appears in the dropdown menu
+let chooseYourTheme = $("#color").append(new Option("Please select a t-shirt theme", "select"));  // create a new menu option and set the value equal to the string "select"
+$("#color").val("select"); 
 
 $('#design').change(function(){
     if($('#design').val() === 'js puns') {
