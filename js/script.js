@@ -3,11 +3,6 @@
  * Jane Lewis
  */
 //Makes the name field focus state
-
-//Initial cost is 0
-let totalCost= 0;
-
-
 $("#name").focus();
 
 
@@ -32,8 +27,6 @@ $("#name").focus();
  * hide color selection in drop down menu untile design theme is selected in 
  * 
  */
-
-/* $('#design').children().first().hide();*/
 
 let chooseYourTheme = $("#color").append(new Option("Please select a t-shirt theme", "select"));  // create a new menu option and set the value equal to the string "select"
 $("#color").val("select"); 
@@ -61,26 +54,29 @@ $('#design').change(function(){
 $('#color').find('option').hide()
 
 
-
-
-
-
 /** 
- * Activity section
+ * Activity section, add event listen for updates of activity choice
  * prevent user from selecting 2 activities at the same time
- * calcalate activities cost
+ * prevents selection of events with same date and time
 */
+//Initial activity cost is 0
+let totalActCost= 0;
+const pricePerAct=('checkbox');
+const conferCost=('checkboxAll');
+
+//Append activity
+$('#activities').append();
+
+$(''.activities'.change(function(){
+};
+    function pricePerAct(){
+        frameWorks.find.(':first-Child').attr('class','frameworks');
+    };
 
 /** 
- * var activities = document.getElementById("activities");
+ * 
 
-activitiesCheckbox.addEventListener("change", function(event) {
-  if (event.target.checked) {
-    activities.disabled = false;
-  } else {
-    activities.disabled = true;
-  }
-}, false);
+
 
 $('.option').click(function() {
     let total = 0;
@@ -92,26 +88,8 @@ $('#total').html('$' + total);
 */
 
 
-//$('#design').change(function (e) { 
-// 
-//'#colors-js-puns' div,
-
-//hasAttribute()
 
 //var actPrice= new Array();
 //accPrice["None"]=0;
  
   
-
- /*** 
-  * onchange="change()";
-  * $('#show').on('change', function () {
-   var optionSelected = $("option:selected", this);
-   var valueSelected = this.value;
-   if(valueSelected == 1){
-       $("#text_area").show();
-   } else {
-       $("#text_area").hide();
-   }
-});
- */
