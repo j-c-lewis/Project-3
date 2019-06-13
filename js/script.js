@@ -97,10 +97,10 @@ $('#total').html('$' + total);
  let actSec=('Activity Section');
  let ccNum=('Credit Card Number');
  let zCode=('Zip Code');
- let cVV=('CCC');
+ let cVV=('CVV');
 
   
-fuction validateTextbox();{
+fuction validateText();{
     let userName = document.getElementById('name');
     if (userName.nodeValue.length<5){
         alert ('Please enter at least 5 characters');
@@ -125,9 +125,9 @@ fuction validateTextbox();{
     if (cVV.nodeValue.length<5){
         alert ("Please enter at least 5 characters");
         }  
-
-    validateTextbox.focus ();
-    validateTextbox.style.border = "solid  3px red";
+            else{
+    //validateTextbox.focus ();
+    validateText.style.border = "solid  3px red";
         return false; 
-    
+            }
     };
