@@ -131,3 +131,13 @@ function validateText() {
         return false; 
             }
     };
+
+   /**  let email = documentByElementId=('mail');
+    email.addEventListener('click', function() {
+        if(email.validityTypeMismatch){
+            email.setCustomVal('Type correct email');
+        } else{
+            email.setCustomValidity(event);
+        }
+    });
+    **/
