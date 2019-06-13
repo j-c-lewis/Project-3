@@ -100,12 +100,12 @@ $('#total').html('$' + total);
  let cVV=('CVV');
 
   
-fuction validateText();{
+function validateText() {
     let userName = document.getElementById('name');
     if (userName.nodeValue.length<5){
         alert ('Please enter at least 5 characters');
     }
-    let sendMail= document.getElementById('email');
+    let sendMail= document.getElementById('mail');
         if (sendMail.nodeValue.length<5){
             alert ("Please enter at least 5 characters");
         }
@@ -117,7 +117,7 @@ fuction validateText();{
         if (CreditCard.nodeValue.length<5){
         alert ("Please enter at least 5 characters");
         }
-    let zCode = document.getElementById("Zip Code");
+    let zCode = document.getElementById("Zip");
         if (zCode.nodeValue.length<5){
             alert ("Please enter at least 5 characters");
             }  
