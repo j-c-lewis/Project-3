@@ -65,16 +65,17 @@ const pricePerAct=('checkbox');
 const conferCost=('checkboxAll');
 
 //Append activity
-$('#activities').append();
+/*$('#activities').append();
+**/
 
 //Change without disabling activity
 
-$('.activities').on('change', (event) => {
+$/** ('.activities').on('change', (event) => {
     event.DefaultOff();
 
     $("input").prop('disabled', true);
     $("input").prop('disabled', false);
-
+**/
 /** 
  * 
 
@@ -91,5 +92,42 @@ $('#total').html('$' + total);
 
 //var actPrice= new Array();
 //accPrice["None"]=0;
- 
+ let userName=('name');
+ let sendMail=('email');
+ let actSec=('Activity Section');
+ let ccNum=('Credit Card Number');
+ let zCode=('Zip Code');
+ let cVV=('CCC');
+
   
+fuction validateTextbox();{
+    let userName = document.getElementById('name');
+    if (userName.nodeValue.length<5){
+        alert ('Please enter at least 5 characters');
+    }
+    let sendMail= document.getElementById('email');
+        if (sendMail.nodeValue.length<5){
+            alert ("Please enter at least 5 characters");
+        }
+    let actSec = document.getElementsByClassName('#activities');
+        if (actSec.nodeValue.length<5){
+        alert ("Please enter at least 5 characters");
+        }
+    let CreditCard = document.getElementById("credit card");
+        if (CreditCard.nodeValue.length<5){
+        alert ("Please enter at least 5 characters");
+        }
+    let zCode = document.getElementById("Zip Code");
+        if (zCode.nodeValue.length<5){
+            alert ("Please enter at least 5 characters");
+            }  
+    let cVV = document.getElementById('CVV');
+    if (cVV.nodeValue.length<5){
+        alert ("Please enter at least 5 characters");
+        }  
+
+    validateTextbox.focus ();
+    validateTextbox.style.border = "solid  3px red";
+        return false; 
+    
+    };
