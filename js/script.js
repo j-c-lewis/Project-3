@@ -60,10 +60,12 @@ $('#color').find('option').hide()
  * prevents selection of events with same date and time
 */
 
+$('.activities').find('checkbox').change(function(){
+};
+
 $('.activities').click(function() {
     alert('checkbox'.click());
   });
-  $(".activities").find("input:checkbox").change(function();
 
 $('.activities').each (function() {
     if ($(this).text().indexOf("Tuesday 9am-12pm") >=0) {
