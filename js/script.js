@@ -59,14 +59,16 @@ $('#color').find('option').hide()
  * prevent user from selecting 2 activities at the same time
  * prevents selection of events with same date and time
 */
-
+//Change status when boxes clicked
 $('.activities').find('checkbox').change(function(){
 });
 
+//Event listener
 $('.activities').click(function() {
     alert('checkbox'.click());
   });
 
+  //Target each activity, disable checked boxes
 $('.activities').each (function() {
     if ($(this).text().indexOf("Tuesday 9am-12pm") >=0) {
     }
