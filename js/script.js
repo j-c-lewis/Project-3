@@ -61,7 +61,7 @@ $('#color').find('option').hide()
 */
 
 $('.activities').find('checkbox').change(function(){
-};
+});
 
 $('.activities').click(function() {
     alert('checkbox'.click());
