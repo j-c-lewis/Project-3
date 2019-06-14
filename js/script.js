@@ -59,11 +59,63 @@ $('#color').find('option').hide()
  * prevent user from selecting 2 activities at the same time
  * prevents selection of events with same date and time
 */
+
+$('.activities').click(function() {
+    alert('checkbox'.click());
+  });
+  $(".activities").find("input:checkbox").change(function();
+
+$('.activities').each (function() {
+    if ($(this).text().indexOf("Tuesday 9am-12pm") >=0) {
+    }
+    else 
+    if ($(this).text().indexOf("Tuesday 1pm-4pm") >= 0) {
+      }
+    else 
+    if ($(this).text().indexOf("Wednesday") >= 0) {
+    }
+  else {
+    $(document).on('.activities', function() {
+        $(this).removeAttr('disabled');
+    });
+  }});
+
 //Initial activity cost is 0
 let totalActCost= 0;
 const pricePerAct=('checkbox');
 const conferCost=('checkboxAll');
 
+//Validate name
+function allLetter(uname)
+{ 
+var letters = /^[A-Za-z]+$/;
+if(name.value.match(letters))
+{
+return true;
+}
+else
+{
+alert('Name must have alphabet characters only');
+uname.focus();
+return false;
+}
+}
+
+//Validate email
+function ValidateEmail(uemail)
+{
+var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+if(uemail.value.match(mailformat))
+{
+return true;
+}
+else
+{
+alert("You have entered an invalid email address!");
+uemail.focus();
+return false;
+}
+}
 //Append activity
 /*$('#activities').append();
 **/
@@ -92,7 +144,9 @@ $('#total').html('$' + total);
 
 //var actPrice= new Array();
 //accPrice["None"]=0;
- let userName=('name');
+
+
+/* let userName=('name');
  let sendMail=('email');
  let actSec=('Activity Section');
  let ccNum=('Credit Card Number');
