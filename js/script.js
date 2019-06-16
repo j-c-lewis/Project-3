@@ -70,7 +70,7 @@ $('#color').find('option').hide()
 const activity = $(this).find('input').attr('class');
 const checked = this.checked;
 
-console.log(checked);
+console.log('checked');
 
 //Prevent same date and time
 if ($(this).is('.tueAm')) {
