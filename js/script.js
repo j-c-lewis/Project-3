@@ -55,73 +55,9 @@ $('#color').find('option').hide()
 
 
 /** 
- * Activity section, add event listen for updates of activity choice
- * prevent user from selecting 2 activities at the same time
- * prevents selection of events with same date and time
-*/
-//Change status when boxes clicked
+ * Activity section*/
 
-//onsole.log(cliked);
-
-
-/*let activities
-[
-    (name = 'all', price = 200),
-    (name = 'js - frameworks', day = 'tuesday', time_start = '9', price = '100'),
-    (name = 'js_libs', day = 'tuesday', time_start = 13, price = 100),
-    (name = 'express', day = 'tuesday', time_start = 9, price =100),
-    (name = 'node', day = 'tuesday', time_start = 13, price = 100),
-    (name = 'build_tools', day = 'wednesday', time_start = 9, price - 100),
-    (name = 'npm', day - 'wednesday', time_start = 13, price = 100)
-]*/
-
-   /*function getActivityInfo(pickAct) {
-        let name = pickAct.name ;
-            for (let i = 0; i < activities.lenght; ++i){
-        if(activities[i].name == name) {
-        }
-    } 
-        return activities;
-   };*/
-//$('.change').click(function() {
-
-
-/*const $activity = $('.activities input[name =' + 'actName' + ']');
-//console.log(actName);
-   $activity.change(() => {
-    if($activity.is(':checked')) {
-        total += price;
-    $('.total p').text('Total: $' + total);
-    //targets same activity
-        if(sameAct !== '') {
-            tAct(sameAct, false);
-    }
-    }
-      else {
-        total -= price;
-    $('.total p').text('Total: $' + total);
-        if(sameAct !== '') {
-            tAct(sameAct, true);
-    }
-    }
-   });
-//enabled or disabled activity
-function tAct(actName, enable) {
-
-const $activity = $('.activities input[name=' + actName + ']');
-    if(enable) {
-      $activity.prop('disabled', false);
-      $activity.parent().removeClass('disabled');
-}
-    else {
-      $activity.prop('disabled', true);
-      $activity.parent().addClass('disabled');
-}
-
-};*/
-
-  //}
-    
+//Activity  Input    
   const $activities = $('.activities input[type="checkbox"]');
   let mainCon = 0;
   let tueAm = 0;
@@ -134,6 +70,9 @@ const $activity = $('.activities input[name=' + actName + ']');
 const activity = $(this).find('input').attr('class');
 const checked = this.checked;
 
+console.log(checked);
+
+//Prevent same date and time
 if ($(this).is('.tueAm')) {
     $('.tueAm').not(this).prop('disabled', tueAm >0);
         if ($('.disabled .tueAm') [0]) {
@@ -153,6 +92,7 @@ if ($(this).is('.tuePm')) {
         document.getElementById('totalcost').innerHTML = '$' + total;
 };
 
+//Payment info
 $('#payment').on('chang', function(){
     const payInfo = $(this).val;
     switch (payInfo) {
@@ -171,7 +111,7 @@ $('#payment').on('chang', function(){
       }
     });
     
-    // ensuring name field not blank
+//Prevent blank name field
 function nameValidation() {
     const name = $("#name").val();  
     let nameValid = false;
@@ -187,7 +127,7 @@ function nameValidation() {
     return nameValid;
   }
   
-  // ensuring email field not blank and has correct format
+  //Check email field not blank and has correct format
   function emailValidation() {  
     const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const email = $("#mail").val();
@@ -205,7 +145,7 @@ function nameValidation() {
     return emailValid;
   }
   
-  // Ensuring at least one activity is selected
+  // Checks  activity is selected
   function activityValidation() {
     const checkedActivities = $('.activities input[type="checkbox"]:checked').length;
     let activityValid = false;
@@ -220,8 +160,7 @@ function nameValidation() {
   }
   
   
-  // Ensure credit card info is correct
-    // credit card field only accepts a number betwen 13 and 16
+  // Creditcard validation
   function ccValidation() {
     const cc = $("#cc-num").val();
     let ccValid = false;
@@ -243,8 +182,8 @@ function nameValidation() {
   console.log("cc =" + ccValid);
     return ccValid;
     
-  }
-    // zipcode field only accepts a 5 digit number
+  };
+    // Zipcode validation
   function zipValidation() {
     const zip = $("#zip").val();  
     let zipValid = false;
@@ -263,8 +202,9 @@ function nameValidation() {
   $("#zip").next(".validation").remove();
     } 
     return zipValid;
-  }
-    // CVV field only accepts a 3 digit number
+  };
+
+// CVV validation
   function cvvValidation() {
     const cvv = $("#cvv").val();  
     let cvvValid = false;
@@ -284,8 +224,9 @@ function nameValidation() {
       $("#cvv").next(".validation").remove();
     }  
     return cvvValid;
-  }
-    // combine all credit card validations in one function for easy use
+  };
+
+//All credit card validation info
   function creditCardValidation() {
     const creditCard = $("#payment option[value='credit card']");
     ccValid = ccValidation();
@@ -298,9 +239,9 @@ function nameValidation() {
       }
     }
     return creditValid;
-  }
+  };
   
-  // run all validation checks preventing submission if any errors are present
+  //Checks for errors before submits
   $("#submitButton").click(function(event) {
     nameValid = nameValidation();
     emailValid = emailValidation();
@@ -318,64 +259,5 @@ function nameValidation() {
       validInfo = false;
     }
   });
-    //}
-//})
 
 
-/*$('.option').click(function() {
-    let total = 0;
-    $('.option:checkbox).each(function() {
-     let   total += parseInt($(this).val()); 
-    });
-$('#total').html('$' + total);
-});*/
-
-
-
-
-  
-/*function validateText() {
-    let userName = document.getElementById('name');
-    if (userName.nodeValue.length<5){
-        alert ('Please enter at least 5 characters');
-    }
-    let sendMail= document.getElementById('mail');
-        if (sendMail.nodeValue.length<5){
-            alert ("Please enter at least 5 characters");
-        }
-    let actSec = document.getElementsByClassName('#activities');
-        if (actSec.nodeValue.length<5){
-        alert ("Please enter at least 5 characters");
-        }
-    let CreditCard = document.getElementById("credit card");
-        if (CreditCard.nodeValue.length<5){
-        alert ("Please enter at least 5 characters");
-        }
-    let zCode = document.getElementById("Zip");
-        if (zCode.nodeValue.length<5){
-            alert ("Please enter at least 5 characters");
-            }  
-    let cVV = document.getElementById('CVV');
-    if (cVV.nodeValue.length<5){
-        alert ("Please enter at least 5 characters");
-        }  
-            else{
-    //validateTextbox.focus ();
-    validateText.style.border = "solid  3px red";
-        return false; 
-            }
-    };
-
-   /**  let email = documentByElementId=('mail');
-    email.addEventListener('click', function() {
-        if(email.validityTypeMismatch){
-            email.setCustomVal('Type correct email');
-        } else{
-            email.setCustomValidity(event);
-        }
-    });
-    **/
-   /*Vakidation of                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
-   const name = $("#name").val();  
-   let nameValid = false;
-   */
