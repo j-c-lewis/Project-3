@@ -61,7 +61,7 @@ $('#color').find('option').hide()
 */
 //Change status when boxes clicked
 
-console.log(cliked);
+c//onsole.log(cliked);
 
 //$('.change').click(function() {
 
