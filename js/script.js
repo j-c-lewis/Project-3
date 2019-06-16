@@ -61,7 +61,7 @@ $('#color').find('option').hide()
 */
 //Change status when boxes clicked
 
-c//onsole.log(cliked);
+//onsole.log(cliked);
 
 //$('.change').click(function() {
 
@@ -69,7 +69,7 @@ let activities
 [
     (name = 'all', price = 200),
     (name = 'js - frameworks', day = 'tuesday', time_start = '9', price = '100'),
-    (name = 'js_libs', day = 'tuesday', time_start = '13', price = 100),
+    (name = 'js_libs', day = 'tuesday', time_start = 13, price = 100),
     (name = 'express', day = 'tuesday', time_start = 9, price =100),
     (name = 'node', day = 'tuesday', time_start = 13, price = 100),
     (name = 'build_tools', day = 'wednesday', time_start = 9, price - 100),
