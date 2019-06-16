@@ -60,29 +60,34 @@ $('#color').find('option').hide()
  * prevents selection of events with same date and time
 */
 //Change status when boxes clicked
-$('.activities').find('checkbox').change(function(){
-});
 
-//Event listener
-$('.activities').click(function() {
-    alert('checkbox'.click());
-  });
+console.log(cliked);
+
+//$('.change').click(function() {
+
+let activities
+[
+    (name = 'all', price = 200),
+    (name = 'js - frameworks', day = 'tuesday', time_start = '9', price = '100'),
+    (name = 'js_libs', day = 'tuesday', time_start = '13', price = 100),
+    (name = 'express', day = 'tuesday', time_start = 9, price =100),
+    (name = 'node', day = 'tuesday', time_start = 13, price = 100),
+    (name = 'build_tools', day = 'wednesday', time_start = 9, price - 100),
+    (name = 'npm', day - 'wednesday', time_start = 13, price = 100)
+]
+
+   function getActivityInfo(pickAct) {
+        let name = pickAct.name ;
+            for (let i = 0; i < activities.lenght; ++i){
+        if(activities[i].name == name) {
+        }
+    } 
+        return activities;
+   };
 
   //Target each activity, disable checked boxes
-$('.activities').each (function() {
-    if ($(this).text().indexOf("Tuesday 9am-12pm") >=0) {
-    }
-    else 
-    if ($(this).text().indexOf("Tuesday 1pm-4pm") >= 0) {
-      }
-    else 
-    if ($(this).text().indexOf("Wednesday") >= 0) {
-    }
-  else {
-    $(document).on('.activities', function() {
-        $(this).removeAttr('disabled');
-    });
-  }});
+    
+
 
 //Initial activity cost is 0
 let totalActCost= 0;
