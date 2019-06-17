@@ -48,7 +48,10 @@ $('#design').change(function(){
         $('#color').find('option[value="steelblue"]').show()
         $('#color').find('option[value="dimgrey"]').show()
         $('#color').val('tomato')
+    }else {
+      $("#color").val("select"); 
     }
+
 });
 
 $('#color').find('option').hide()
