@@ -56,65 +56,172 @@ $('#design').change(function(){
 
 $('#color').find('option').hide()
 
+/*
+Activity Info
+Prevents same day and time
+Adds activity cost
+*/
 
-/** 
- * Activity section*/
+$('.checked_all').on('change', function() { 
+  $('.checkbox').prop('checked', $(this).prop("checked")); 
+});
 
-//Activity  Input    
-  const $activities = $('.activities input[type="checkbox"]');
-  let mainCon = 0;
-  let tueAm = 0;
-  let tuePM = 0;
-  let wedAm = 0;
-  let wedPm = 0;
-  let total = 0;
+$('.activities').change(function(){
+  $(this).find('input:checkbox').each(function() {
+      $(this).attr('disabled', false);
+  });
+  let price = 0;
+  $(this).find('input:checkbox').each(function() {
+      if ($(this).prop('checked')) {
+      
+          var inputText = $(this).parent().text();
+          var index = inputText.indexOf("$");
+          price += parseInt(inputText.substring(index+1));
+
+          var startDate = inputText.indexOf("—");
+          var endDate = inputText.indexOf(",");
+          selectedDate = inputText.substring(startDate, endDate);
+
+          $('.activities').find('input:checkbox').each(function() {
+              if ($(this).parent().text().indexOf(selectedDate) != -1 
+                  && $(this).parent().text().indexOf(inputText) == -1) {
+                  $(this).attr('disabled', true);
+              }
+          });
+      }
+  });
 
 
-const activity = $(this).find('input').attr('class');
-const checked = this.checked;
+  //Adds total as activities are checked
+  $("#cost").val(price);
+  if (price > 0) {
+      $("#cost").removeClass("invalid").addClass("valid");
+  } else {
+      $("#cost").removeClass("valid").addClass("invalid");
+  }
+  
+  if($('.activity:checked').length == $('.checkbox').length){
+      $('.checked_all').prop('checked',true);
+  }else{
+      $('.checked_all').prop('checked',false);
+  }
+});
 
-console.log('checked');
+ 	
+//Initially hides paypal and bitcoin
+$( document ).ready(function() {
+  $("#paypal-1").hide();
+  $("#bitcoin-1").hide();
+$(".activities").append('<div class="col-6 col"><label for="cost">Total cost:</label><input id="cost" name="cost" type="text" disabled></div>'
+)
+});
+$(document).ready(function(){ 
+  $('#payment').change(function(){
+ 
+    
+  //Hide / show credit card, paypal and bitcoin  
+    const paragraphs = $("p"); 
+    const paypal = $(paragraphs[0]); 
+    const bitcoin = $(paragraphs[1]);
 
-//Prevent same date and time
-if ($(this).is('.tueAm')) {
-    $('.tueAm').not(this).prop('disabled', tueAm >0);
-        if ($('.disabled .tueAm') [0]) {
-            $('.tueAm').not(this).parent().removeClass('disabled');
-        } else {
-            $('.tueAm').not(this).parent().addClass('disabled');
-        }
-}
+    console.log('#payment');
 
-if ($(this).is('.tuePm')) {
-    $('.tuePm').not(this).prop('disabled', tuePm >0);
-        if ($('.disabled .tuePm') [0]) {
-            $('.tuePm').not(this).parent().removeClass('disabled');
-        } else {
-            $('.tuePm').not(this).parent().addClass('disabled');
-        }
-        document.getElementById('totalcost').innerHTML = '$' + total;
+    if ($("#payment").val() === "credit card") {
+      $("#credit-card").show();
+      $("#paypal-1").hide();
+      $("#bitcoin-1").hide();
+  } else {
+      $("#credit-card").hide();
+  }
+  if ($("#payment").val() === "paypal") {
+      $("#paypal").show();
+      $("#paypal-1").show();
+      $("#bitcoin-1").hide();
+  } else {
+      $("#paypal").hide();
+      }
+
+  if ($("#payment").val() === "bitcoin") {
+      $("#bitcoin").show();
+      $("#bitcoin-1").show();
+      $("#paypal-1").hide();
+
+  } else {
+      $("#bitcoin").hide();
+  }
+
+});
+});
+
+/*Validation*/
+
+$("form").submit(function(event) {
+ console.log('form submission')
+ nameValid = nameValidation();
+
+  emailValid = emailValidation();
+  activityValid = activityValidation();
+  creditValid = creditCardValidation();
+  event.preventDefault(); 
+  
+   validInfo = false;
+  
+  if (nameValid && emailValid && activityValid && creditValid) {   
+    alert("Form successfully submitted");
+    window.location.reload();	
+  } else {
+    validInfo = false
+      alert('Form not successful');
+    return true
+  }
+});
+
+function numbersOnly(event) {
+  event.target.value = event.target.value.replace(/[^0-9]+/, '');
 };
 
-//Payment info
-$('#payment').on('chang', function(){
-    const payInfo = $(this).val;
-    switch (payInfo) {
-        case 'credit card':
-        $('#credit-card').show();
-        $('#paypal. #bitcoin',hide())
-        break;
-        case "paypal":
-          $("#credit-card, #bitcoin").hide();
-          $("#paypal").show();               
-          break;
-        case "bitcoin":
-          $("#credit-card, #paypal").hide();      
-          $("#bitcoin").show();               
-          break;
-      }
-    });
-    
-//Prevent blank name field
+document.getElementById('cc-num').addEventListener('keyup', numbersOnly);
+document.getElementById('zip').addEventListener('keyup', numbersOnly);
+document.getElementById('cvv').addEventListener('keyup', numbersOnly);
+
+function changePaymentHandler(event) {
+  hidePaymentFields();
+  var ccreq = document.getElementById('cc-num');
+  var cczip = document.getElementById('zip');
+  var cccvv = document.getElementById('cvv');
+
+  if (event.target.value === 'credit card') {
+      removeSelectPaymentError();
+      document.getElementById('credit-card').style.display = 'block';
+
+      ccreq.setAttribute('type', 'tel');
+      ccreq.setAttribute('minlength', 13);
+      ccreq.setAttribute('maxlength', 16);
+
+      cczip.setAttribute('type', 'number');
+      cczip.setAttribute('min', 10000);
+      cczip.setAttribute('max', 99999);
+
+      cccvv.setAttribute('type', 'number');
+      cccvv.setAttribute('min', 100);
+      cccvv.setAttribute('max', 999);
+  } else if (event.target.value === 'bitcoin') {
+      removeSelectPaymentError();
+      document.getElementById('bitcoin-div').style.display = 'block';
+  } else if (event.target.value === 'paypal') {
+      removeSelectPaymentError();
+      document.getElementById('paypal-div').style.display = 'block';
+  }
+}
+document.querySelector('select[name="user_payment"]').addEventListener('change', changePaymentHandler);
+
+
+
+/*
+Prevent submission of blank name field
+prevent submission of blank email field and confirms correct input added
+
+*/
 function nameValidation() {
     const name = $("#name").val();  
     let nameValid = false;
@@ -130,7 +237,6 @@ function nameValidation() {
     return nameValid;
   }
   
-  //Check email field not blank and has correct format
   function emailValidation() {  
     const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const email = $("#mail").val();
@@ -148,7 +254,7 @@ function nameValidation() {
     return emailValid;
   }
   
-  // Checks  activity is selected
+  // Confirms activity checked
   function activityValidation() {
     const checkedActivities = $('.activities input[type="checkbox"]:checked').length;
     let activityValid = false;
@@ -157,13 +263,17 @@ function nameValidation() {
       $(".activities legend").next(".validation").remove();
       $(".activities legend").after("<div class='validation'>At least 1 activity must be chosen</div>")    
     } else {
-      activityValid = true;    
+      activityValid = true; 
+      $(".activities legend").next(".validation").remove();   
     }
     return activityValid;
   }
   
   
-  // Creditcard validation
+  /*
+  Vvalidation info
+  */
+
   function ccValidation() {
     const cc = $("#cc-num").val();
     let ccValid = false;
@@ -186,7 +296,7 @@ function nameValidation() {
     return ccValid;
     
   };
-    // Zipcode validation
+  
   function zipValidation() {
     const zip = $("#zip").val();  
     let zipValid = false;
@@ -207,7 +317,6 @@ function nameValidation() {
     return zipValid;
   };
 
-// CVV validation
   function cvvValidation() {
     const cvv = $("#cvv").val();  
     let cvvValid = false;
@@ -232,11 +341,11 @@ function nameValidation() {
 //All credit card validation info
   function creditCardValidation() {
     const creditCard = $("#payment option[value='credit card']");
-    ccValid = ccValidation();
-    zipValid = zipValidation();
-    cvvValid = cvvValidation();
     creditValid = false;
-    if (creditCard.prop('selected')) {
+      if (creditCard.prop('selected')) {
+        ccValid = ccValidation();
+        zipValid = zipValidation();
+        cvvValid = cvvValidation();
       if (ccError && zipError && cvvError) {
         creditValid = true;      
       }
@@ -244,8 +353,8 @@ function nameValidation() {
     return creditValid;
   };
   
-  //Checks for errors before submits
-  $("#submitButton").click(function(event) {
+  //Error check
+  $("form").submit(function(event) {
     nameValid = nameValidation();
     emailValid = emailValidation();
     activityValid = activityValidation();
@@ -262,5 +371,67 @@ function nameValidation() {
       validInfo = false;
     }
   });
+  
+
+ // Real time check of input of name info
+ var nameInput = document.getElementById('name');
+ var nameLabel = document.getElementsByTagName('label')[0];
+ var nameError = document.createElement('label');
+
+ function checkName() {
+     if (nameInput.value === '' || nameInput === null) {
+         window.scrollTo(0, nameInput.parentElement.offsetTop);
+         nameInput.setCustomValidity("Please enter a name");
+         nameError.textContent = 'Please enter a name';
+         nameError.setAttribute('class', 'error');
+         nameLabel.appendChild(nameError);
+         return false
+     } else if (nameInput.value.length < 2) {
+         nameInput.setCustomValidity("Please enter a name longer than two characters");
+         nameError.textContent = 'Please enter a name longer than two characters';
+         nameError.setAttribute('class', 'error');
+         nameLabel.appendChild(nameError);
+         window.scrollTo(0, nameInput.parentElement.offsetTop);
+         return false
+     } else if (nameError.parentElement !== null) {
+         nameInput.setCustomValidity("");
+         nameLabel.removeChild(nameError);
+     }
+     return true
+ };
+ nameInput.addEventListener("input", checkName);
+
+
+ // Real time check of input of email info
+ var mail = document.getElementById('mail');
+ var mailLabel = document.getElementsByTagName('label')[1];
+ var mailError = document.createElement('label');
+ var emailPattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+
+ function checkMail() {
+     if (mail.value === '' || mail.value === null) {
+         mail.setCustomValidity("Please enter an email address");
+         mailError.textContent = 'Please enter an email address';
+         mailError.setAttribute('class', 'error');
+         mailLabel.appendChild(mailError);
+         window.scrollTo(0, mail.parentElement.offsetTop);
+         return false
+     } else if (!mail.value.match(emailPattern)) {
+         mail.setCustomValidity("Please enter a valid email address");
+         mailError.textContent = 'Please enter a valid email address';
+         mailError.setAttribute('class', 'error');
+         mailLabel.appendChild(mailError);
+         window.scrollTo(0, mail.parentElement.offsetTop);
+         return false
+     } else if (mailError.parentElement !== null) {
+         mail.setCustomValidity("");
+         if (mailError.parentElement) {
+             mailError.parentElement.removeChild(mailError);
+         }
+     }
+     return true
+ }
+ mail.addEventListener("input", checkMail);
+
 
 
