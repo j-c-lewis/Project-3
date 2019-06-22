@@ -55,43 +55,10 @@ $('#design').change(function(){
 
 $('#color').find('option').hide();
 
-/*
-Activity Info
-Prevents same day and time
-*/
-/*
-$('.checked_all').on('change', function() { 
-    $('.checkbox').prop('checked', $(this).prop("checked")); 
-});
 
-
-$('.activities').change(function(){
-    $(this).find('input:checkbox').each(function() {
-        $(this).attr('disabled', false);
-    });
-    
-    $(this).find('input:checkbox').each(function() {
-        if ($(this).prop('checked')) {
-        
-            var inputText = $(this).parent().text();
-            var index = inputText.indexOf("$");
-        
-
-            var startDate = inputText.indexOf("—");
-            var endDate = inputText.indexOf(",");
-            selectedDate = inputText.substring(startDate, endDate);
-
-            $('.activities').find('input:checkbox').each(function() {
-                if ($(this).parent().text().indexOf(selectedDate) != -1 
-                    && $(this).parent().text().indexOf(inputText) == -1) {
-                    $(this).attr('disabled', true);
-                }
-            });
-        }
-    });
-
-*/
     /*
+    Activity
+    Prevents same date and time from being selected
     Adds activity cost as activity checked
     */
     var totalCost = 0;
@@ -102,7 +69,7 @@ $('.activities').change(function(){
 
     $('.activities').append('<div id = "total"></div>');
 var price = 0
-//price += parseInt(inputText.substring(index+1));
+
     var updateCost = function (cost) {
     totalCost += cost;
     document.getElementById("total").innerHTML = "Total: $" + totalCost;
@@ -188,31 +155,12 @@ var price = 0
     }
     });
 
-    //$('.activities').append('<div id = "total"></div>');
-/*
-    
-var costUpdate = function (cost){
-    totalCost += cost;
-    document.getElementById('total').innerHTML = "Total: $" + totalCost;
-}
-  
-  
-});
-   $("#cost").val(price);
-   if (price > 0) {
-       $("#cost").removeClass("invalid").addClass("valid");
-   } else {
-       $("#cost").removeClass("valid").addClass("invalid");
-   }
-    if($('.activity:checked').length == $('.checkbox').length){
-        $('.checked_all').prop('checked',true);
-    }else{
-        $('.checked_all').prop('checked',false);
-    }
-//});
-*/
 
-//Payment
+/*
+Payment
+Hides Paypal and Bitcoin unless clicked
+displays clicked payment option and hides other two 
+*/
 $('#paypal, #bitcoin').hide();
 $('#payment').val('credit card');
 
@@ -265,7 +213,11 @@ if ($("#payment").val() === "bitcoin") {
 });
 });
 
-//Validation
+/*
+Validation
+Checks all necessary fields are chickled
+Confirms valid entry of name, email, creditCard MediaDeviceInfo
+*/
 $('#name, #mail, #cc-num, #zip, #cvv, #other-field').keyup(function (){
     if ( $(this).val() === "")  {
     $(this).removeClass('success');
