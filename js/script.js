@@ -3,6 +3,8 @@
  * Jane Lewis
  */
 //Makes the name field focus state
+
+//$(document).ready (function() {
 $("#name").focus();
 
 /** 
@@ -57,24 +59,23 @@ $('#color').find('option').hide();
 Activity Info
 Prevents same day and time
 */
-
-var price = 0;
-
+/*
 $('.checked_all').on('change', function() { 
     $('.checkbox').prop('checked', $(this).prop("checked")); 
 });
+
 
 $('.activities').change(function(){
     $(this).find('input:checkbox').each(function() {
         $(this).attr('disabled', false);
     });
-    price = 0;
+    
     $(this).find('input:checkbox').each(function() {
         if ($(this).prop('checked')) {
         
             var inputText = $(this).parent().text();
             var index = inputText.indexOf("$");
-            price += parseInt(inputText.substring(index+1));
+        
 
             var startDate = inputText.indexOf("—");
             var endDate = inputText.indexOf(",");
@@ -89,11 +90,10 @@ $('.activities').change(function(){
         }
     });
 
-
+*/
     /*
     Adds activity cost as activity checked
     */
-
     var totalCost = 0;
     var jsFrameworks = $("input[name='js-frameworks'");
     var jsLibraries = $("input[name='js-libs']");
@@ -101,21 +101,18 @@ $('.activities').change(function(){
     var nodeJS = $("input[name='node']");
 
     $('.activities').append('<div id = "total"></div>');
-
-    
-var costUpdate = function (cost){
+var price = 0
+//price += parseInt(inputText.substring(index+1));
+    var updateCost = function (cost) {
     totalCost += cost;
-    document.getElementById('total').innerHTML = "Total: $" + totalCost;
-}
-  
-$('.activities').append("<p id='p2'> Total Cost Will Be: $" + totalCost + "</p>");
-/*
-
-$("input[name='all']").change(function () {
+    document.getElementById("total").innerHTML = "Total: $" + totalCost;
+    };  
+    
+    $("input[name='all']").change(function () {
     if ($(this).prop("checked")) {
-    costUpdate(200);
+    updateCost(200);
     } else {
-    costUpdate(-200);
+    updateCost(-200);
     }
     });
     
@@ -124,12 +121,12 @@ $("input[name='all']").change(function () {
     express.prop("disabled", true);
     express.parent().addClass("disabled");
     express.parent().append('<span class="unavailable">&nbsp;&nbsp;&nbsp;&nbsp;Unavailable</span>');
-    costUpdate(100);
+    updateCost(100);
     } else {
     express.prop("disabled", false);
     express.parent().removeClass("disabled");
     express.parent().find('.unavailable').remove();
-    costUpdate(-100);
+    updateCost(-100);
     }
     });
     
@@ -138,12 +135,12 @@ $("input[name='all']").change(function () {
     nodeJS.prop("disabled", true);
     nodeJS.parent().addClass("disabled");
     nodeJS.parent().append('<span class="unavailable">&nbsp;&nbsp;&nbsp;&nbsp;Unavailable</span>');
-    costUpdate(100);
+    updateCost(100);
     } else {
     nodeJS.prop("disabled", false);
     nodeJS.parent().removeClass("disabled");
     nodeJS.parent().find('.unavailable').remove();
-    costUpdate(-100);
+    updateCost(-100);
     }
     });
     
@@ -152,12 +149,12 @@ $("input[name='all']").change(function () {
     jsFrameworks.prop("disabled", true);
     jsFrameworks.parent().addClass("disabled");
     jsFrameworks.parent().append('<span class="unavailable">&nbsp;&nbsp;&nbsp;&nbsp;Unavailable</span>');
-    costUpdate(100);
+    updateCost(100);
     } else {
     jsFrameworks.prop("disabled", false);
     jsFrameworks.parent().removeClass("disabled");
     jsFrameworks.parent().find('.unavailable').remove();
-    costUpdate(-100);
+    updateCost(-100);
     }
     });
     
@@ -166,31 +163,41 @@ $("input[name='all']").change(function () {
     jsLibraries.prop("disabled", true);
     jsLibraries.parent().addClass("disabled");
     jsLibraries.parent().append('<span class="unavailable">&nbsp;&nbsp;&nbsp;&nbsp;Unavailable</span>');
-    costUpdate(100);
+    updateCost(100);
     } else {
     jsLibraries.prop("disabled", false);
     jsLibraries.parent().removeClass("disabled");
     jsLibraries.parent().find('.unavailable').remove();
-    costUpdate(-100);
+    updateCost(-100);
     }
     });
     
     $("input[name='build-tools']").change(function () {
     if ($(this).prop("checked")) {
-    costUpdate(100);
+    updateCost(100);
     } else {
-    costUpdate(-100);
+    updateCost(-100);
     }
     });
     
     $("input[name='npm']").change(function () {
     if ($(this).prop("checked")) {
-    costUpdate(100);
+    updateCost(100);
     } else {
-    costUpdate(-100);
+    updateCost(-100);
     }
     });
-*/
+
+    //$('.activities').append('<div id = "total"></div>');
+/*
+    
+var costUpdate = function (cost){
+    totalCost += cost;
+    document.getElementById('total').innerHTML = "Total: $" + totalCost;
+}
+  
+  
+});
    $("#cost").val(price);
    if (price > 0) {
        $("#cost").removeClass("invalid").addClass("valid");
@@ -202,8 +209,8 @@ $("input[name='all']").change(function () {
     }else{
         $('.checked_all').prop('checked',false);
     }
-});
-
+//});
+*/
 
 //Payment
 $('#paypal, #bitcoin').hide();
@@ -211,11 +218,26 @@ $('#payment').val('credit card');
 
 $(document).ready(function(){ 
     $('#payment').change(function(){
+    const paragraphs = $("p"); 
+    const paypal = $(paragraphs[0]); 
+    const bitcoin = $(paragraphs[1]);
+
+   $('#payment').change(function(){
+     if ($('#payment option selected').val() === 'paypal'){
+         $('#credit-card, #bitcoin').hide();
+         $('#paypal').show(); 
+     }  else if ($('#payment option selected').val() === '#bitcoin'){
+         $('#credit-card, #paypal').hide();
+         $('##bitcoin').show(); 
+     }  else if ($('#payment option selected').val() === 'credit-card'){
+         $('#credit-card').show();
+         $('#paypal, #bitcoin').hide();
+     } else {
+         return  ('#credit-card')
+     }
+    }); 
+
      
-      
-      const paragraphs = $("p"); 
-      const paypal = $(paragraphs[0]); 
-      const bitcoin = $(paragraphs[1]);
 
 if ($("#payment").val() === "credit card") {
     $("#credit-card").show();
@@ -240,10 +262,8 @@ if ($("#payment").val() === "bitcoin") {
 } else {
     $("#bitcoin").hide();
 }
-
 });
 });
-
 
 //Validation
 $('#name, #mail, #cc-num, #zip, #cvv, #other-field').keyup(function (){
@@ -255,6 +275,7 @@ $('#name, #mail, #cc-num, #zip, #cvv, #other-field').keyup(function (){
     $(this).addClass('success');
     }
     });
+   
     
     var emailAddress = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
     var creditCard = /\b\d{4}(| |-)\d{4}\1\d{4}\1\d{4}\b/g;
@@ -304,3 +325,5 @@ $('#name, #mail, #cc-num, #zip, #cvv, #other-field').keyup(function (){
     document.getElementById('error-message').innerHTML = errorMessage;
     $('#error-message').show();
     });
+    
+
