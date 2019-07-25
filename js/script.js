@@ -2,10 +2,15 @@
  * Treehouse Telepath Project Three: Interactive Form 
  * Jane Lewis
  */
-
+ 
+    const paragraphs = $("p"); 
+    const paypal = $(paragraphs[0]); 
+    const bitcoin = $(paragraphs[1]);
+    const submitButton = $(':button')[0];
 
 //Makes the name field focus state
     $("#name").focus();
+//Set credit card as default payment method
     $('#payment').val("credit card");
 
     /** 
@@ -62,7 +67,7 @@ Prevents same day and time
 Adds activity cost
 */
 
-var jsFrameworks = $("input[name='js-frameworks'");
+  var jsFrameworks = $("input[name='js-frameworks'");
 	var jsLibraries = $("input[name='js-libs']");
 	var express = $("input[name='express']");
 	var nodeJS = $("input[name='node']");
@@ -158,25 +163,23 @@ var jsFrameworks = $("input[name='js-frameworks'");
 
  	
 //Initially hides paypal and bitcoin, shows clicked payment and hides other two options
-$('#paypal, #bitcoin').hide();
+//$('#paypal, #bitcoin').hide();
 
-//Set credit card as default method
-$('#payment').val("credit card");
-
-$('#payment').change(function(){
-	if ($('#payment option:selected').val() === "paypal") {
-		$('#credit-card, #bitcoin').hide();
-		$('#paypal').show();
-	} else if ($('#payment option:selected').val() === "bitcoin") {
-		$('#credit-card, #paypal').hide();
-		$('#bitcoin').show();
-	} else {
-		$('#credit-card').show();
-		$('#paypal, #bitcoin').hide();
-	}
-});
-
-
+    $('#credit-card').next().hide().next().hide();
+    $('#payment option[value="select_method"]').wrap('<span>').hide() // Hide the “Select Payment Method” `option`
+    $('#payment').change(function (){
+        $('#payment option:selected').each(function() {
+            if($(this).text() === 'Credit Card') {
+                $('#credit-card').fadeIn().next().hide().next().hide(); 
+              } else if($(this).text() === 'PayPal'){
+                $('#credit-card').hide().next().slideDown().next().hide();
+                $('#credit-card input').val('');
+            } else if($(this).text() === 'Bitcoin'){
+                $('#credit-card').hide().next().hide().next().slideDown(); 
+                $('#credit-card input').val(''); // Remove text from Credit Card fields
+            }
+        });
+    });
 
 /*
 Validation
@@ -184,113 +187,145 @@ Checks all necessary fields are chickled
 Confirms valid entry of name, email, creditCard MediaDeviceInfo
 */
 
-$('form').prepend('<p id="error-message"></p>');{
-    $('#error-message').hide();
-    $('form').submit(function (e){
-    e.preventDefault();
 
-$('#name, #mail, #cc-num, #zip, #cvv, #other-field').keyup(function (){
-    if ( $(this).val() === "")  {
-    $(this).removeClass('success');
-    $(this).addClass('error');
-    } else {
-    $(this).removeClass('error');
-    $(this).addClass('success');
+
+function validForm () {
+  let formGood = true; 
+  let emailRegex= /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  let ccNumRegex = /^[0-9]{13,16}$/;
+  let zipCodeRegex = /^[0-9]{5}$/;
+  let cvvRegex= /^[0-9]{3}$/;
+
+  let name = $('#name').val();
+  let email = $('#mail').val();
+  let ccNum = $('#cc-num').val();
+  let zipCode = $('#zip').val();
+  let cvv = $('#cvv').val();
+  let message = "";
+  //let validateForm = function(e) {
+//}
+  if (name == "" ||  email == "" || ccNum == "" || zipCode == "" ||  cvv == "")  {
+  "<div>'Must enter name'</div>";
+   //$("<p> 'Must enter name' </p>").interBefore('#name');
+    formGood = false;
+}
+  //if ($('.activities').find(':checkbox:checked').length == 0){
+  //$( "<p>'Must pick one activity'</p>").insertBefore( ".activities" );
+    //formGood = false;
+//}
+
+
+
+
+
+// const allActivities = $('.activities')[0];
+// const checkedActivitiesAmount = $(allActivities).find(':checkbox:checked').length;
+   
+
+// if (ccNum && ccNumRegex.test(ccNum) !="") {
+//       message += '<div> Card number invalid.</div>';
+//       formGood = false;
+//     } 
+//   })
+//   if (email != "" && !emailRegex.test(email)) {
+//     $('#email').validateEmail(function(result){
+//       if(!(result.valid)) {
+//         message += '<div> Email invalid.</div>';
+//         formGood = false;
+//       } 
+//     });
+// }
+
+// } 
+
+// // Confirm 1 activity selected
+
+//   var activityCount = 0;
+//   for (var i = 0; i < activities.length; i++) {
+//     if (activities[i].checked) {
+//       activityCount++;
+//     }
+//   }
+//   if (activityCount === 0) {
+//     e.preventDefault();
+//     message += '<div> Must pick one.</div>';
+//   } 
+
+  
+//   //Validates credit cared, zipcode, cvv enterd and in correct formats
+
+//   if (paymentSelect.value === 'credit card') {
+//     if (ccNumber.value === "") {
+//       e.preventDefault();
+//       displayError(ccNumber, "Enter credit card number");
+//     } else {
+//       if (!validateCCNum(ccNumber.value)) {
+//         e.preventDefault();
+//         displayError(ccNumber, "Credit card number must be 13-16 digits");
+//       }
+//     }
+
+//     if (zipCode.value === "") {
+//       e.preventDefault();
+//       displayError(zipCode, "Enter zip Code");
+//     } else {
+//       if (!validateZipCode(zipCode.value)) {
+//         e.preventDefault();
+//         displayError(zipCode, "Zip Code must be 5 digits");
+//       }
+//     }
+//     if (CVV.value === "") {
+//       e.preventDefault();
+//       displayError(CVV, "Please enter cvv code");
+//     } else {
+//       if (!validateCVV(CVV.value)) {
+//         e.preventDefault();
+//         displayError(CVV, "CVV must be 3 digits");
+//       }
+//     }
+  
+  //} 
+  return formGood ;
+  
+}
+
+//submitButton.addEventListener("click", validForm);
+
+
+
+ //$('form').submit(function(e) {
+  //const isValid = validForm();
+  //if (!isValid) {
+   // console.log("validation worked")
+    //return false;
+  //}
+//});
+ 
+  /*
+ function formValidation()
+   {
+    var name = $('#name').val();
+    var email = $('#email').val();
+  {
+    if (name = "")
+  {
+    if (email = "")
+  
+}
+  }
+reurn false;
+   };
+   */
+   
+   /*
+ if($('#name').val = "")
+    {
+      return true
     }
-    
-
-    //var emailAddress = $('/^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
-    //var creditCard = /\b\d{4}(| |-)\d{4}\1\d{4}\1\d{4}\b/g;
-    //var zipCode = /^\d{5}(?:[-\s]\d{4})?$/;
-    //var errorMessage ="";
-
-    
-    
-    function creditCard(inputtext)
-{
-  var creditCard = /\b\d{4}(| |-)\d{4}\1\d{4}\1\d{4}\b/g;
-  if(inputtext.value.match(creditCard))
-        {
-      return true;
-        }
-      else
-        {
-            if(inputtext.value < 0(creditCard)) "<div>Input Required.</div>";
-        
-        return false;
-        }
-}
-       /* var name = $('#name').val();
-        var emailAddress = $('email').val();
-        var payment = $('#payment').val();
-        var creditcard = $('#credit-card').val();
-        var cvv = $('#cvv').val();
-        var ccnum = $('#cc-num').val();
-     
-        $(".error").remove();
-     
-        if ($('#name').length < 0) {
-          $('#name').after('<span class="error">This field is required</span>');
-        }
-        if ($('#mail').lengh < 0 ){
-          $('#mail').after('<span class="error">This field is required</span>');
-        } 
-          if ($('#payment') === $('#credit-card') && ($('#credit-card').val ()== "" )) {
-          $('#creditcard', '#cvv', '#cc-num').after('<span class="error">This field is required</span>');
-        }
-    if ($('#activities').val() == "")  {
-        $('#activities').after('<span class="error">This field is required</span>');
-        }
-        else {
-            $('#name, #mail, #cc-num, #zip, #cvv, #activities')
-        }*/
-        $('form').submit
-      });
-     
-    });
-}
-    //});
-    
-    /*if ( $('#name').val() === "" ) {
-    //console.log("Error!");
-    //$("html, body").animate({scrollTop: 0}, "slow");
-    errorMessage = "<h2>Error!</h2> Please enter your name.";
-    $('#name').addClass('error');
-    $('#name').focus();
-    } else if ( !emailAddress.test($('#mail').val()) ) {
-    //$("html, body").animate({scrollTop: 0}, "slow");
-    errorMessage = "<h2>Error!</h2> Please enter a valid email.";
-    $('#mail').focus();
-    } else if ( $(".activities > label > input:checked").length === 0 ) {
-    //$("html, body").animate({scrollTop: 0}, "slow");
-    errorMessage = "<h2>Error!</h2> Please select at least one activity.";
-    $('.activities').focus();
-    } else if ( $("#payment").val() === "select_method" )  {
-    //$("html, body").animate({scrollTop: 0}, "slow");
-    errorMessage = "<h2>Error!</h2>Please select a payment method.";
-    $('#payment').focus();
-    } else if ( $("#payment").val() === "credit card" && !creditCard.test($("#cc-num").val()) )  {
-    //$("html, body").animate({scrollTop: 0}, "slow");
-    errorMessage = "<h2>Error!</h2>Please enter a valid credit card number.";
-    $('#cc-num').focus();
-    } else if ( $("#payment").val() === "credit card" && !zipCode.test($("#zip").val()) )  {
-    //$("html, body").animate({scrollTop: 0}, "slow");
-    errorMessage = "<h2>Error!</h2>Please enter your zip code.";
-    $('#zip').focus();
-    } else if ( $("#payment").val() === "credit card" && $("#cvv").val().length < 3)  {
-    //$("html, body").animate({scrollTop: 0}, "slow");
-    errorMessage = "<h2>Error!</h2>Please enter a 3 digit CVV";
-    $('#cvv').focus();
-    } else {
-    //$("html, body").animate({scrollTop: 0}, "slow");
-    errorMessage = "";
-    alert("Thanks for registering.");
-    } 
-    document.getElementById('error-message').innerHTML = errorMessage;
-    $('#error-message').show(); 
-*/
-    //});
-
-
-    //});
-
+    else
+    {
+      '<div>"must enter name"</div>'
+      return false
+    }
+  }
+  */
