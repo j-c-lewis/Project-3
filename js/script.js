@@ -158,7 +158,7 @@ Adds activity cost
 		} else {
 			updateCost(-100);
 		}
-	});
+});
 
 
  	
@@ -191,141 +191,37 @@ Confirms valid entry of name, email, creditCard MediaDeviceInfo
 
 function validForm () {
   let formGood = true; 
-  let emailRegex= /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  let nameRegex = /^[a-zA-Z]+ [a-zA-Z]+$/;
+  let emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   let ccNumRegex = /^[0-9]{13,16}$/;
   let zipCodeRegex = /^[0-9]{5}$/;
-  let cvvRegex= /^[0-9]{3}$/;
-
-  let name = $('#name').val();
-  let email = $('#mail').val();
-  let ccNum = $('#cc-num').val();
-  let zipCode = $('#zip').val();
-  let cvv = $('#cvv').val();
-  let message = "";
+  let cvvRegex = /^[0-9]{3}$/;
+  //let message = "";
   //let validateForm = function(e) {
 //}
-  if (name == "" ||  email == "" || ccNum == "" || zipCode == "" ||  cvv == "")  {
-  "<div>'Must enter name'</div>";
-   //$("<p> 'Must enter name' </p>").interBefore('#name');
-    formGood = false;
-}
+  if ($('#name') == nameRegex == "" )  ($('#mail') == emailRegex == "" ) ($('#cc-num') == ccNumRegex == "")  ($('#zip') == zipCodeRegex == "") ($('#cvv') == cvvRegex == "" );
+  {
+  $('#name').after(<span class="error">'This field is required'</span>) ||
+  $('#mail').after(<span class="error">'This field is required'</span>) ||
+  $('#cc-num').after(<span class="error">'This field is required'</span>) ||
+  $('#zip').after(<span class="error">'This field is required'</span>) ||
+  $('#cvv').after(<span class="error">'This field is required'</span>) 
+  //formGood = false;
+  }
   //if ($('.activities').find(':checkbox:checked').length == 0){
   //$( "<p>'Must pick one activity'</p>").insertBefore( ".activities" );
     //formGood = false;
 //}
 
-
-
-
-
-// const allActivities = $('.activities')[0];
-// const checkedActivitiesAmount = $(allActivities).find(':checkbox:checked').length;
-   
-
-// if (ccNum && ccNumRegex.test(ccNum) !="") {
-//       message += '<div> Card number invalid.</div>';
-//       formGood = false;
-//     } 
-//   })
-//   if (email != "" && !emailRegex.test(email)) {
-//     $('#email').validateEmail(function(result){
-//       if(!(result.valid)) {
-//         message += '<div> Email invalid.</div>';
-//         formGood = false;
-//       } 
-//     });
-// }
-
-// } 
-
-// // Confirm 1 activity selected
-
-//   var activityCount = 0;
-//   for (var i = 0; i < activities.length; i++) {
-//     if (activities[i].checked) {
-//       activityCount++;
-//     }
-//   }
-//   if (activityCount === 0) {
-//     e.preventDefault();
-//     message += '<div> Must pick one.</div>';
-//   } 
-
-  
-//   //Validates credit cared, zipcode, cvv enterd and in correct formats
-
-//   if (paymentSelect.value === 'credit card') {
-//     if (ccNumber.value === "") {
-//       e.preventDefault();
-//       displayError(ccNumber, "Enter credit card number");
-//     } else {
-//       if (!validateCCNum(ccNumber.value)) {
-//         e.preventDefault();
-//         displayError(ccNumber, "Credit card number must be 13-16 digits");
-//       }
-//     }
-
-//     if (zipCode.value === "") {
-//       e.preventDefault();
-//       displayError(zipCode, "Enter zip Code");
-//     } else {
-//       if (!validateZipCode(zipCode.value)) {
-//         e.preventDefault();
-//         displayError(zipCode, "Zip Code must be 5 digits");
-//       }
-//     }
-//     if (CVV.value === "") {
-//       e.preventDefault();
-//       displayError(CVV, "Please enter cvv code");
-//     } else {
-//       if (!validateCVV(CVV.value)) {
-//         e.preventDefault();
-//         displayError(CVV, "CVV must be 3 digits");
-//       }
-//     }
-  
-  //} 
   return formGood ;
   
 }
+
 
 //submitButton.addEventListener("click", validForm);
 
 
 
- //$('form').submit(function(e) {
-  //const isValid = validForm();
-  //if (!isValid) {
-   // console.log("validation worked")
-    //return false;
-  //}
-//});
+
  
-  /*
- function formValidation()
-   {
-    var name = $('#name').val();
-    var email = $('#email').val();
-  {
-    if (name = "")
-  {
-    if (email = "")
   
-}
-  }
-reurn false;
-   };
-   */
-   
-   /*
- if($('#name').val = "")
-    {
-      return true
-    }
-    else
-    {
-      '<div>"must enter name"</div>'
-      return false
-    }
-  }
-  */
