@@ -187,41 +187,64 @@ Checks all necessary fields are chickled
 Confirms valid entry of name, email, creditCard MediaDeviceInfo
 */
 
-
-
-function validForm () {
-  let formGood = true; 
-  let nameRegex = /^[a-zA-Z]+ [a-zA-Z]+$/;
-  let emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  let ccNumRegex = /^[0-9]{13,16}$/;
-  let zipCodeRegex = /^[0-9]{5}$/;
-  let cvvRegex = /^[0-9]{3}$/;
-  //let message = "";
-  //let validateForm = function(e) {
-//}
-  if ($('#name') == nameRegex == "" )  ($('#mail') == emailRegex == "" ) ($('#cc-num') == ccNumRegex == "")  ($('#zip') == zipCodeRegex == "") ($('#cvv') == cvvRegex == "" );
+function validForm (){
+//submitButton.addEventListener("click", validForm);
+//$(document).addEventListener(submit", function(e)) {
+    
+    let formGood = true; 
+    let nameRegex = /^[a-zA-Z]+ [a-zA-Z]+$/;
+    let emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    let ccNumRegex = /^[0-9]{13,16}$/;
+    let zipCodeRegex = /^[0-9]{5}$/;
+    let cvvRegex = /^[0-9]{3}$/;
+    
+    //let errorMessage ='Reguires Input' == "";
+     //$(document).on('submit', "form", function(e)
+  //}
+  submitButton.addEventListener("submit", (event)); 
+    if ((nameRegex.test($('#name').val())) || (emailRegex.test($('#mail').val())) || (ccNumRegex.test($('#cc-num').val())) || (zipCodeRegex.test($('#zip').val())) || (cvvRegex.test($('#cvv').val()))
+    || ($('.activities').find(':checkbox:checked').length > 0) ) ;
   {
-  $('#name').after(<span class="error">'This field is required'</span>) ||
-  $('#mail').after(<span class="error">'This field is required'</span>) ||
-  $('#cc-num').after(<span class="error">'This field is required'</span>) ||
-  $('#zip').after(<span class="error">'This field is required'</span>) ||
-  $('#cvv').after(<span class="error">'This field is required'</span>) 
-  //formGood = false;
+    alert("Input required!") ;
+    $("#name").focus()|| $("#mail").focus() || $("#cc-num").focus() || $("#cvv").focus() || $("#zip").focus();
+    (e).preventDefault();
+    formGood = false;
+  } else  {
+      //$('#name').addClass("")|| $('#mail').addClass("") || $('#cc-num').addClass("") || $('#zip').addClass("") || $('#cvv').addClass("");
+    formGood;
+    }
+//}
+
   }
+
+
   //if ($('.activities').find(':checkbox:checked').length == 0){
   //$( "<p>'Must pick one activity'</p>").insertBefore( ".activities" );
     //formGood = false;
 //}
+//submitButton.addEventListener("click", validForm); 
+  //return formGood ;
+  //submitButton.addEventListener("click", validForm);
 
-  return formGood ;
+//return validForm = false;
+//}
+
+//$('#name').text('<p>Please enter your name.</p>') && ('#mail').text('<p>This field is required</p>') && $('#cc-num').text('<p>This field is required</p>') &&
+   //$('#cvv').text('<p>This field is required</p>') && $('#zip').text('<p>This field is required</p>')
+    
   
-}
-
-
-//submitButton.addEventListener("click", validForm);
-
-
-
-
- 
+    //{ $('#name').append('<div id="error message"></div>');
+      //if (nameRegex.text($('#name).val())) {
+          //formGood = false;
+         // ($('#name').after('<span  class="error">"This field is required"</span>'))}
+      //else {remove.error
   
+      //}
+      //<span class="msg error">You shall not pass!</span>
+    //$("<p>'This field requires input'</p>").insertBefore('#name');
+    //$('#mail').after(<span class="error">'This field is required</span>") ||
+    //$('#cc-num').after(<span class="error">'This field is required</span>) ||
+    //$('#zip').after(<span class="error">'This field is required</span>) ||
+    //$('#cvv').after(<span class="error">'This field is required</span>) 
+    //formGood = false;
+
