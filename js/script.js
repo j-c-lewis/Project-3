@@ -187,64 +187,72 @@ Checks all necessary fields are chickled
 Confirms valid entry of name, email, creditCard MediaDeviceInfo
 */
 
-function validForm (){
-//submitButton.addEventListener("click", validForm);
+//function validForm (){
 //$(document).addEventListener(submit", function(e)) {
-    
+  //($('.activities').find(':checkbox:checked').length > 0) ||((nameRegex.test($('#name').val())) || (emailRegex.test($('#mail').val())) || (ccNumRegex.test($('#cc-num').val())) || (zipCodeRegex.test($('#zip').val())) || (cvvRegex.test($('#cvv').val()))
+
+
     let formGood = true; 
     let nameRegex = /^[a-zA-Z]+ [a-zA-Z]+$/;
     let emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     let ccNumRegex = /^[0-9]{13,16}$/;
     let zipCodeRegex = /^[0-9]{5}$/;
-    let cvvRegex = /^[0-9]{3}$/;
-    
-    //let errorMessage ='Reguires Input' == "";
+    let cvvRegex = /^[0-9]{3}$/; 
+    let errorMessage ="";
      //$(document).on('submit', "form", function(e)
   //}
-  submitButton.addEventListener("submit", (event)); 
-    if ((nameRegex.test($('#name').val())) || (emailRegex.test($('#mail').val())) || (ccNumRegex.test($('#cc-num').val())) || (zipCodeRegex.test($('#zip').val())) || (cvvRegex.test($('#cvv').val()))
-    || ($('.activities').find(':checkbox:checked').length > 0) ) ;
-  {
-    alert("Input required!") ;
-    $("#name").focus()|| $("#mail").focus() || $("#cc-num").focus() || $("#cvv").focus() || $("#zip").focus();
-    (e).preventDefault();
-    formGood = false;
-  } else  {
-      //$('#name').addClass("")|| $('#mail').addClass("") || $('#cc-num').addClass("") || $('#zip').addClass("") || $('#cvv').addClass("");
-    formGood;
+
+  
+  //submitButton.addEventListener("submit", (event)); 
+(nameRegex.test($('#name') || emailRegex.test($('#mail') || ccNumRegex.test($('#cc-num') || zipCodeRegex.test($('#zip') || cvvRegex.test($('#cvv')).keyup(function ()  {
+      if ($(this).val === "") {
+        $(this).removeClass('good');
+        $(this).addClass('error');
+      } else {
+        $(this).removeClass('error');
+        $(this).addClass('good');
+      }
+    }))))));
+
+    $('form').prepend('<p id="error-message"></p>');
+    $('#error-message').hide();
+    $('form').submit(function(e){
+            e.preventDefault();
+
+      if ($('#name').val()=== ""){
+        errorMesage = "<h2>Error</h2> Input Required";
+      $('#name').addClass('error');
+      $('name').focus();
+    } else  if 
+     ($('#mail').val()=== ""){
+        errorMesage = "<h2>Error</h2> Input Required";
+      $('#mail').addClass('error');
+      $('#mail').focus();
+       } else  if 
+       ($('#cc-num').val()=== ""){
+          errorMesage = "<h2>Error</h2> Input Required";
+        $('#cc-num').addClass('error');
+        $('#cc-num').focus();
+      } else if 
+        ($('#zip').val()=== ""){
+          errorMesage = "<h2>Error</h2> Input Required";
+        $('#zip').addClass('error');
+        $('#zip').focus();
+      } else if
+        ($('#cvv').val()=== ""){
+          errorMesage = "<h2>Error</h2> Input Required";
+        $('#cvv').addClass('error');
+        $('#cvv').focus();
+      } else {
+      alert ('Thanks for registering');
     }
-//}
+    
+    document.getElementById('error-message').innerHTML = errorMessage;
+    $('#errorMessage').show();
 
-  }
+  })
+  //formGood; 
 
-
-  //if ($('.activities').find(':checkbox:checked').length == 0){
-  //$( "<p>'Must pick one activity'</p>").insertBefore( ".activities" );
-    //formGood = false;
-//}
-//submitButton.addEventListener("click", validForm); 
-  //return formGood ;
-  //submitButton.addEventListener("click", validForm);
-
-//return validForm = false;
-//}
-
-//$('#name').text('<p>Please enter your name.</p>') && ('#mail').text('<p>This field is required</p>') && $('#cc-num').text('<p>This field is required</p>') &&
-   //$('#cvv').text('<p>This field is required</p>') && $('#zip').text('<p>This field is required</p>')
     
   
-    //{ $('#name').append('<div id="error message"></div>');
-      //if (nameRegex.text($('#name).val())) {
-          //formGood = false;
-         // ($('#name').after('<span  class="error">"This field is required"</span>'))}
-      //else {remove.error
   
-      //}
-      //<span class="msg error">You shall not pass!</span>
-    //$("<p>'This field requires input'</p>").insertBefore('#name');
-    //$('#mail').after(<span class="error">'This field is required</span>") ||
-    //$('#cc-num').after(<span class="error">'This field is required</span>) ||
-    //$('#zip').after(<span class="error">'This field is required</span>) ||
-    //$('#cvv').after(<span class="error">'This field is required</span>) 
-    //formGood = false;
-
